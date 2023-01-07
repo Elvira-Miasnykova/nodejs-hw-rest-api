@@ -1,4 +1,5 @@
 const { Conflict } = require("http-errors");
+const gravatar = require("gravatar");
 // const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
 
@@ -8,10 +9,12 @@ const signup = async (req, res) => {
     if (user) {
         throw new Conflict(`email ${email} in use!`);
     }
+    const avatarUrl = gravatar.url(email);
     const newUser = new User({
         name,
         email,
         subscription,
+        avatarUrl,
         
     });
     /*
@@ -51,6 +54,7 @@ const signup = async (req, res) => {
                 name,
                 email,
                 subscription,
+                avatarUrl,
             },
         },
     });
