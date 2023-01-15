@@ -29,6 +29,15 @@ const userSchema = Schema(
       type: String,
       default: null,
     },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: true,
+    },
+
   },
   { versionKey: false, timestamps: true }
 );
@@ -56,6 +65,11 @@ const joiLoginSchema = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
+const joiVerifyEmailSchema = Joi.object({
+  email: Joi.string().required(),
+  
+});
+
 const joiUpdateSubSchema = Joi.object({
     subscription: Joi.string().valid(...Object.values(statusList)),
 });
@@ -65,5 +79,6 @@ module.exports = {
   User,
   joiSignupSchema,
   joiLoginSchema,
+  joiVerifyEmailSchema,
   joiUpdateSubSchema,
 };
