@@ -1,6 +1,6 @@
 const { NotFound, BadRequest } = require("http-errors");
 const { User } = require("../../models/user");
-const { sendEmail } = require("../../helpers");
+const { sendEmail } = require("../../services/email");
 
 const resendVerifiedEmail = async (req, res) => {
     const { email } = req.body;

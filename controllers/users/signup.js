@@ -1,7 +1,7 @@
 const { Conflict } = require("http-errors");
 // const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
-const { sendEmail } = require("../../helpers");
+const { sendEmail } = require("../../services/email");
 const { v4 } = require("uuid");
 
 const signup = async (req, res) => {

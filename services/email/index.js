@@ -1,5 +1,3 @@
 const sendEmail = require("./sendMail");
 
-module.exports = {
-    sendEmail,
-};
+module.exports = sendEmail;
