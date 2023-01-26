@@ -1,4 +1,5 @@
 const { Conflict } = require("http-errors");
+const gravatar = require("gravatar");
 // const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
 const { sendEmail } = require("../../services/email");
@@ -11,12 +12,20 @@ const signup = async (req, res) => {
     if (user) {
         throw new Conflict(`email ${email} in use!`);
     }
+
     const verificationToken = v4();
+
+    const avatarUrl = gravatar.url(email);
     const newUser = new User({
         name,
         email,
         subscription,
+
         verificationToken,
+
+        avatarUrl,
+        
+
     });
     /*
     newUser = {
@@ -61,6 +70,7 @@ const signup = async (req, res) => {
                 name,
                 email,
                 subscription,
+                avatarUrl,
             },
         },
     });
